@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const roles = [
+  {
+    title: "Vice President of Product Development / Vice President of Engineering",
+    company: "Revaly, formerly FlexPay",
+    dates: "2023 - Present",
+    summary:
+      "Lead product development, engineering, architecture, and delivery for a fintech platform focused on payment performance, approval optimization, and recovery. Own the operating model connecting product strategy, technical execution, platform reliability, and measurable business outcomes.",
+    highlights: [
+      "Built Revaly's Trust Network from concept to launch, creating a secure data exchange between financial institutions, fraud detection platforms, orchestrators, and merchants that reduced false fraud declines by 115 bps.",
+      "Introduced Upfront Approval Optimization, expanding Revaly's value proposition earlier in the payment lifecycle by preventing false declines before recovery and increasing approvals by 50 bps.",
+      "Rebuilt Product Development into an AI-enabled execution organization, making AI usage a standard operating expectation and increasing product engineering throughput by 400%.",
+      "Unified Product and Engineering under a full-lifecycle operating model spanning planning, delivery, operations, measurement, and product sunset.",
+      "Increased transaction approval performance by 2 percentage points through product KPIs, strategic roadmaps, and prioritization of high-impact initiatives.",
+      "Accelerated release frequency from bi-monthly releases to multiple deployments per day by restructuring teams into domain-focused squads and implementing DORA, SPACE, and developer experience metrics.",
+      "Reduced legal and compliance review time by 75% through automation of redlining, documentation, and review workflows.",
+      "Strengthened regulatory, funding, and partner posture through leadership of SRED, IRAP, and Microsoft Unicorn Program initiatives.",
+    ],
+  },
+  {
+    title: "Senior Director of Product Development",
+    company: "MavTek Inc",
+    dates: "2021 - 2023",
+    summary:
+      "Led product development and engineering execution across multiple product domains for a high-scale online platform business. Directed 13 teams and 55 software engineers while aligning technology delivery with business strategy, growth, reliability, and cost efficiency.",
+    highlights: [
+      "Led 13 teams and 55 software engineers across multiple product domains, improving alignment between engineering execution and business outcomes.",
+      "Increased North Star metrics by 20% year-over-year by aligning roadmap execution with strategic growth priorities.",
+      "Drove a 25% lift in organic search traffic through technical SEO, platform performance improvements, and cross-functional prioritization.",
+      "Reduced infrastructure costs by 60% through architectural streamlining, tooling consolidation, and cloud optimization.",
+      "Elevated DORA metrics to Elite levels by introducing Progressive Delivery practices and improving release discipline.",
+      "Strengthened delivery visibility and operational accountability across product, engineering, and executive stakeholders.",
+    ],
+  },
+  {
+    title: "Director of Technology",
+    company: "4th Whale Marketing",
+    dates: "2016 - 2021",
+    summary:
+      "Served as the senior technology leader for a high-volume digital media and marketing platform business. Owned technology strategy, engineering leadership, platform architecture, delivery practices, and acquisition integration.",
+    highlights: [
+      "Contributed to 15% year-over-year revenue growth by shaping and executing company technology strategy.",
+      "Scaled the engineering organization from inception to 20 high-performing developers.",
+      "Consolidated and integrated multiple high-traffic website acquisitions into a cohesive portfolio generating 30M+ daily sessions.",
+      "Improved mobile performance, contributing to a 20% increase in organic search traffic.",
+      "Led platform architecture, delivery processes, and technical operations across a complex portfolio of high-volume web properties.",
+    ],
+  },
+  {
+    title: "Lead Software Engineer",
+    company: "Ex-Situ Marketing",
+    dates: "2007 - 2016",
+    summary:
+      "Led software delivery, cloud migration, observability, and conversion optimization for subscription-based online platforms.",
+    highlights: [
+      "Migrated infrastructure to AWS and implemented observability practices, achieving 99.99% uptime.",
+      "Established data-driven product practices that increased advertising and product CTR by 20%.",
+      "Improved conversion rates by 15% through enhanced tracking, analytics, and optimization.",
+      "Implemented CI/CD pipelines that reduced developer feedback loops and accelerated release cycles.",
+      "Built and operated high-volume subscription, payment, CMS, and online media platforms.",
+    ],
+  },
+];
+
+const strengths = [
+  "Product and Technology Strategy",
+  "Engineering Leadership",
+  "Platform Modernization",
+  "AI-Enabled Delivery",
+  "Payments and Billing Systems",
+  "SaaS Platforms",
+  "Cloud and Infrastructure Optimization",
+  "Progressive Delivery",
+  "Data-Informed Product Development",
+  "Organizational Transformation",
+  "Compliance and Security Enablement",
+  "Executive Stakeholder Alignment",
+];
+---
+
+<BaseLayout
+  title="Resume | charlesw.dev"
+  description="Resume for Charles Weiss, product and technology executive."
+>
+  <main>
+    <article class="resume">
+      <header class="resume-header">
+        <div>
+          <p class="eyebrow">Resume</p>
+          <h1>Charles Weiss</h1>
+          <p class="resume-subtitle">
+            Product and Technology Executive | CTO | VP Engineering | VP Product Development
+          </p>
+          <p class="resume-meta">Montreal, Quebec | 514-909-7688 | cww1979@gmail.com</p>
+        </div>
+        <a class="resume-download" href="/charles-weiss-resume.pdf">Download PDF</a>
+      </header>
+
+      <section class="resume-section">
+        <h2>Executive Profile</h2>
+        <p>
+          Product and technology executive with 25+ years of experience building,
+          scaling, and modernizing online platforms across payments, billing,
+          acquisition, conversion, retention, and high-volume SaaS systems.
+          Proven record leading product development, engineering, architecture,
+          and delivery organizations through growth, transformation, and platform
+          evolution. Known for combining strategic product vision, deep technical
+          fluency, data-informed decision making, and disciplined execution to
+          turn complex opportunities into measurable business outcomes.
+        </p>
+      </section>
+
+      <section class="resume-section">
+        <h2>Executive Strengths</h2>
+        <ul class="strength-list">
+          {strengths.map((strength) => <li>{strength}</li>)}
+        </ul>
+      </section>
+
+      <section class="resume-section">
+        <h2>Experience</h2>
+        <div class="role-list">
+          {
+            roles.map((role) => (
+              <section class="resume-role">
+                <header>
+                  <div>
+                    <h3>{role.title}</h3>
+                    <p>{role.company}</p>
+                  </div>
+                  <span>{role.dates}</span>
+                </header>
+                <p>{role.summary}</p>
+                <ul>
+                  {role.highlights.map((highlight) => <li>{highlight}</li>)}
+                </ul>
+              </section>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2>Earlier Career</h2>
+        <p>
+          Held progressive software engineering, DevOps, founder, and technical
+          roles across web platforms, subscription billing, payment gateways, CMS
+          systems, e-commerce, automation, data collection, and high-traffic
+          media systems. Earlier experience includes Starmedia Communications,
+          Fetch the Web Inc., Belmont Web Services, and IBM.
+        </p>
+      </section>
+    </article>
+  </main>
+</BaseLayout>
