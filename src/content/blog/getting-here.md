@@ -5,7 +5,7 @@ pubDate: 2026-05-29
 tags: ["career", "engineering", "product"]
 ---
 
-## IBM Bromont
+## IBM
 
 I got my feet wet in the basement caverns of [IBM](https://www.ibm.com/) Bromont's IT department.
 
@@ -45,7 +45,7 @@ built around WAP and WML. It was 2005, the tooling was brutal, and
 It was also a good reminder that technology shifts rarely arrive fully formed.
 You usually meet them when they are awkward, limited, and frustrating.
 
-## Ex-situ and 4th Whale
+## 4th Whale
 
 At Ex-situ, later [4th Whale](https://4thwhale.com/), I started in SEM and PPC
 automation and got pulled into product and platform work. The company had
