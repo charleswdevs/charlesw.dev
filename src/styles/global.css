@@ -244,6 +244,70 @@ h2 {
   margin-top: 2.2em;
 }
 
+.timeline-post .prose {
+  border-left: 1px solid var(--line);
+  margin-left: 10px;
+  padding-left: 34px;
+}
+
+.timeline-post .prose h2 {
+  position: relative;
+}
+
+.timeline-post .prose h2::before {
+  background: var(--green);
+  border: 4px solid var(--bg);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px var(--line);
+  content: "";
+  height: 13px;
+  left: -42px;
+  position: absolute;
+  top: 0.42em;
+  width: 13px;
+}
+
+.timeline-post .prose h2::after {
+  color: var(--muted);
+  content: "";
+  font-size: 0.78rem;
+  font-weight: 760;
+  left: -124px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: right;
+  top: 0.58em;
+  width: 70px;
+}
+
+.timeline-post .prose h2:nth-of-type(1)::after {
+  content: "1990s";
+}
+
+.timeline-post .prose h2:nth-of-type(2)::after {
+  content: "Early 2000s";
+}
+
+.timeline-post .prose h2:nth-of-type(3)::after {
+  content: "2004";
+}
+
+.timeline-post .prose h2:nth-of-type(4)::after {
+  content: "2007-2021";
+}
+
+.timeline-post .prose h2:nth-of-type(5)::after {
+  content: "2021-2023";
+}
+
+.timeline-post .prose h2:nth-of-type(6)::after {
+  content: "2023-now";
+}
+
+.timeline-post .prose h2:nth-of-type(7)::after {
+  content: "Now";
+}
+
 .prose p,
 .prose li {
   color: var(--graphite);
@@ -422,6 +486,27 @@ footer {
   .resume-download {
     justify-content: center;
     width: 100%;
+  }
+
+  .timeline-post .prose {
+    margin-left: 0;
+    padding-left: 24px;
+  }
+
+  .timeline-post .prose h2::before {
+    height: 11px;
+    left: -31px;
+    top: 0.48em;
+    width: 11px;
+  }
+
+  .timeline-post .prose h2::after {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    position: static;
+    text-align: left;
+    width: auto;
   }
 }
 

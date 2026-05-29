@@ -18,11 +18,15 @@ const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
     dateStyle: "long",
   }).format(date);
+
+const articleClasses = ["article", post.id === "getting-here" && "timeline-post"]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <BaseLayout title={`${post.data.title} | charlesw.dev`} description={post.data.description}>
   <main>
-    <article class="article">
+    <article class={articleClasses}>
       <header class="article-header">
         <a class="back-link" href="/">Back to all posts</a>
         <time datetime={post.data.pubDate.toISOString()}>
