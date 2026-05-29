@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/site";
+---
+
+<BaseLayout title={`About | ${profile.domain}`} description={profile.intro}>
+  <main>
+    <article class="article">
+      <header class="article-header">
+        <p class="eyebrow">About</p>
+        <h1>{profile.name}</h1>
+        <p>{profile.intro}</p>
+      </header>
+      <div class="prose">
+        <p>
+          This is a small personal site for notes, technical musings, and project
+          writeups. It is built with Astro and uses Markdown files for content.
+        </p>
+        <p>
+          You can find the source on <a href={profile.github}>GitHub</a> or get
+          in touch at <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

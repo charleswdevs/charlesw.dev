@@ -1,0 +1,15 @@
+---
+import { profile } from "../data/site";
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label={`${profile.domain} home`}>
+    <span class="brand-mark">CW</span>
+    <span>{profile.domain}</span>
+  </a>
+  <nav aria-label="Primary navigation">
+    <a href="/">Blog</a>
+    <a href="/about/">About</a>
+    <a href={profile.github}>GitHub</a>
+  </nav>
+</header>
