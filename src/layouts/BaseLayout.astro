@@ -1,0 +1,39 @@
+---
+import Header from "../components/Header.astro";
+import { profile } from "../data/site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.name} | ${profile.domain}`,
+  description = profile.intro,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <Header />
+      <slot />
+      <footer>
+        <small>&copy; {new Date().getFullYear()} {profile.name}. Built with Astro.</small>
+      </footer>
+    </div>
+  </body>
+</html>

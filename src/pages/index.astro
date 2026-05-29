@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/site";
+
+const pageTitle = `${profile.name} | ${profile.domain}`;
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+  }).format(date);
+---
+
+<BaseLayout title={pageTitle} description={profile.intro}>
+  <main>
+    <section class="blog-hero" aria-label="Introduction">
+      <p class="eyebrow">{profile.role}</p>
+      <h1>{profile.domain}</h1>
+      <p class="lede">{profile.intro}</p>
+    </section>
+
+    <section class="post-list" aria-label="Posts">
+      {
+        posts.map((post) => (
+          <article class="post-preview">
+            <a href={`/blog/${post.id}/`}>
+              <time datetime={post.data.pubDate.toISOString()}>
+                {formatDate(post.data.pubDate)}
+              </time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              {post.data.tags.length > 0 && (
+                <ul aria-label="Tags">
+                  {post.data.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+              )}
+            </a>
+          </article>
+        ))
+      }
+    </section>
+  </main>
+</BaseLayout>
