@@ -318,6 +318,17 @@ h2 {
   font-weight: 650;
 }
 
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.social-links a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .prose code {
   background: #eee7dc;
   border-radius: 5px;
