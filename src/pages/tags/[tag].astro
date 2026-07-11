@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import {
+  blogSchema,
+  breadcrumbSchema,
+  graph,
+  personSchema,
+  tagLabel,
+  tagSlug,
+  websiteSchema,
+} from "../../utils/seo";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const tags = Array.from(new Set(posts.flatMap((post) => post.data.tags)));
+
+  return tags.map((tag) => ({
+    params: { tag: tagSlug(tag) },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const title = tagLabel(tag);
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeZone: "UTC",
+  }).format(date);
+---
+
+<BaseLayout
+  title={`${title} | charlesw.dev`}
+  description={`Posts about ${tag} on charlesw.dev.`}
+  canonicalPath={`/tags/${tagSlug(tag)}/`}
+  jsonLd={graph(
+    personSchema,
+    websiteSchema,
+    blogSchema,
+    breadcrumbSchema([
+      { name: "Topics", path: "/tags/" },
+      { name: title, path: `/tags/${tagSlug(tag)}/` },
+    ]),
+  )}
+  keywords={[tag]}
+>
+  <main>
+    <article class="article">
+      <header class="article-header">
+        <Breadcrumbs items={[
+          { label: "Topics", href: "/tags/" },
+          { label: title, href: `/tags/${tagSlug(tag)}/` },
+        ]} />
+        <p class="eyebrow">Topic</p>
+        <h1>{title}</h1>
+        <p>{sortedPosts.length} post{sortedPosts.length === 1 ? "" : "s"} tagged with {tag}.</p>
+      </header>
+
+      <section class="post-list topic-post-list" aria-label={`Posts tagged ${tag}`}>
+        {
+          sortedPosts.map((post) => (
+            <article class="post-preview">
+              <a href={`/blog/${post.id}/`}>
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {formatDate(post.data.pubDate)}
+                </time>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </a>
+            </article>
+          ))
+        }
+      </section>
+    </article>
+  </main>
+</BaseLayout>

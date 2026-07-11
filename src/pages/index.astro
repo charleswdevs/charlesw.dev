@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/site";
-import { blogSchema, graph, personSchema, websiteSchema } from "../utils/seo";
+import { blogSchema, graph, personSchema, tagSlug, websiteSchema } from "../utils/seo";
 
 const pageTitle = `${profile.name} | ${profile.domain}`;
 const posts = (await getCollection("blog"))
@@ -14,6 +14,8 @@ const formatDate = (date: Date) =>
     dateStyle: "medium",
     timeZone: "UTC",
   }).format(date);
+
+const tags = Array.from(new Set(posts.flatMap((post) => post.data.tags))).sort();
 ---
 
 <BaseLayout
@@ -28,6 +30,21 @@ const formatDate = (date: Date) =>
       <h1>{profile.domain}</h1>
       <p class="lede">{profile.intro}</p>
     </section>
+
+    {
+      tags.length > 0 && (
+        <section class="topic-strip" aria-label="Topics">
+          <p class="section-label">Topics</p>
+          <ul class="topic-list">
+            {tags.map((tag) => (
+              <li>
+                <a href={`/tags/${tagSlug(tag)}/`}>{tag}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
 
     <section class="post-list" aria-label="Posts">
       {

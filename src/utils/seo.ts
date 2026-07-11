@@ -1,9 +1,23 @@
 import { profile } from "../data/site";
 
 export const siteUrl = "https://www.charlesw.dev";
-export const defaultImage = `${siteUrl}/favicon.svg`;
+export const defaultImage = `${siteUrl}/social-card.svg`;
 
 export const absoluteUrl = (path = "/") => new URL(path, siteUrl).toString();
+
+export const tagSlug = (tag: string) =>
+  tag
+    .toLowerCase()
+    .trim()
+    .replaceAll("&", "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+export const tagLabel = (tag: string) =>
+  tag
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
 
 export const personSchema = {
   "@type": "Person",
@@ -55,6 +69,18 @@ export const blogSchema = {
   },
   inLanguage: "en-CA",
 };
+
+export const breadcrumbSchema = (
+  items: Array<{ name: string; path: string }>,
+) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: absoluteUrl(item.path),
+  })),
+});
 
 export const graph = (...items: Array<Record<string, unknown>>) => ({
   "@context": "https://schema.org",
