@@ -1,10 +1,11 @@
 import { getCollection } from "astro:content";
-import { absoluteUrl, xmlEscape } from "../utils/seo";
+import { absoluteUrl, tagSlug, xmlEscape } from "../utils/seo";
 
 const staticPages = [
   { path: "/", priority: "1.0" },
   { path: "/about/", priority: "0.7" },
   { path: "/resume/", priority: "0.7" },
+  { path: "/tags/", priority: "0.6" },
 ];
 
 export async function GET() {
@@ -25,6 +26,14 @@ export async function GET() {
       changefreq: "monthly",
       priority: "0.8",
     })),
+    ...Array.from(new Set(posts.flatMap((post) => post.data.tags)))
+      .sort()
+      .map((tag) => ({
+        loc: absoluteUrl(`/tags/${tagSlug(tag)}/`),
+        lastmod: new Date().toISOString(),
+        changefreq: "weekly",
+        priority: "0.6",
+      })),
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

@@ -147,6 +147,44 @@ h1 {
   padding-bottom: 92px;
 }
 
+.topic-strip {
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 0 24px 48px;
+}
+
+.topic-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topic-list a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green);
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 680;
+  padding: 5px 11px;
+  text-decoration: none;
+}
+
+.topic-list a:hover {
+  border-color: var(--green);
+}
+
+.topic-list-large {
+  margin-top: 24px;
+}
+
+.topic-post-list {
+  padding-bottom: 0;
+}
+
 .post-preview {
   border-top: 1px solid var(--line);
 }
@@ -205,6 +243,14 @@ h2 {
   padding: 3px 10px;
 }
 
+.article-tags a {
+  text-decoration: none;
+}
+
+.article-tags a:hover {
+  color: var(--red);
+}
+
 .article {
   max-width: 820px;
   padding-bottom: 92px;
@@ -232,6 +278,34 @@ h2 {
   display: inline-block;
   font-weight: 720;
   margin-bottom: 28px;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.breadcrumbs {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 28px;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  color: var(--line);
+  content: "/";
+  margin-left: 8px;
+}
+
+.breadcrumbs a {
+  color: var(--red);
+  font-weight: 720;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }

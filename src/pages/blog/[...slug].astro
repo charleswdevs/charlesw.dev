@@ -1,11 +1,14 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import {
   absoluteUrl,
   blogSchema,
+  breadcrumbSchema,
   graph,
   personSchema,
+  tagSlug,
   websiteSchema,
 } from "../../utils/seo";
 
@@ -55,19 +58,34 @@ const articleSchema = {
   keywords: post.data.tags,
   inLanguage: "en-CA",
 };
+
+const breadcrumbs = [
+  { label: "Blog", href: "/" },
+  { label: post.data.title, href: `/blog/${post.id}/` },
+];
 ---
 
 <BaseLayout
   title={`${post.data.title} | charlesw.dev`}
   description={post.data.description}
   canonicalPath={`/blog/${post.id}/`}
-  jsonLd={graph(personSchema, websiteSchema, blogSchema, articleSchema)}
+  jsonLd={graph(
+    personSchema,
+    websiteSchema,
+    blogSchema,
+    breadcrumbSchema([
+      { name: "Blog", path: "/" },
+      { name: post.data.title, path: `/blog/${post.id}/` },
+    ]),
+    articleSchema,
+  )}
+  keywords={post.data.tags}
   ogType="article"
 >
   <main>
     <article class={articleClasses}>
       <header class="article-header">
-        <a class="back-link" href="/">Back to all posts</a>
+        <Breadcrumbs items={breadcrumbs} />
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
@@ -76,7 +94,11 @@ const articleSchema = {
         {
           post.data.tags.length > 0 && (
             <ul class="article-tags" aria-label="Tags">
-              {post.data.tags.map((tag) => <li>{tag}</li>)}
+              {post.data.tags.map((tag) => (
+                <li>
+                  <a href={`/tags/${tagSlug(tag)}/`}>{tag}</a>
+                </li>
+              ))}
             </ul>
           )
         }
