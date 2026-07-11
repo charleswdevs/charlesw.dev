@@ -1,7 +1,7 @@
 import { profile } from "../data/site";
 
 export const siteUrl = "https://www.charlesw.dev";
-export const defaultImage = `${siteUrl}/social-card.svg`;
+export const defaultImage = `${siteUrl}/social-card.png`;
 
 export const absoluteUrl = (path = "/") => new URL(path, siteUrl).toString();
 

@@ -392,6 +392,77 @@ h2 {
   font-weight: 650;
 }
 
+.glossary-link {
+  color: var(--red);
+  font-weight: 650;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.glossary-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 42px;
+}
+
+.glossary-index a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green);
+  font-size: 0.92rem;
+  font-weight: 720;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+.glossary-index a:hover {
+  border-color: var(--green);
+  color: var(--ink);
+}
+
+.glossary-sections {
+  display: grid;
+  gap: 48px;
+}
+
+.glossary-section {
+  scroll-margin-top: 28px;
+}
+
+.glossary-section h2 {
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  margin-bottom: 0;
+  padding-bottom: 14px;
+}
+
+.glossary-list {
+  margin: 0;
+}
+
+.glossary-entry {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+  padding: 22px 0;
+  scroll-margin-top: 28px;
+}
+
+.glossary-entry dt {
+  color: var(--ink);
+  font-size: 1.08rem;
+  font-weight: 760;
+  line-height: 1.3;
+}
+
+.glossary-entry dd {
+  color: var(--graphite);
+  margin: 0;
+}
+
 .social-links {
   display: flex;
   flex-wrap: wrap;
@@ -571,6 +642,11 @@ footer {
   .resume-download {
     justify-content: center;
     width: 100%;
+  }
+
+  .glossary-entry {
+    gap: 8px;
+    grid-template-columns: 1fr;
   }
 
   .timeline-post .prose {

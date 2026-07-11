@@ -48,6 +48,7 @@ const imageUrl = image.startsWith("http") ? image : absoluteUrl(image);
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:type" content={imageUrl.endsWith(".png") ? "image/png" : "image/svg+xml"} />
     <meta property="og:site_name" content={profile.domain} />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:image:width" content="1200" />

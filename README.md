@@ -1,6 +1,18 @@
 # charlesw.dev
 
-Personal blog and technical musings for Charles W., built with Astro and Markdown.
+Source for [charlesw.dev](https://charlesw.dev), Charles W.'s personal site for
+technical writing, project notes, career context, and public contact links. The
+site is built with Astro, uses Markdown for blog content, and deploys to GitHub
+Pages from the `main` branch.
+
+## What is included
+
+- A Markdown-powered blog under `src/content/blog`
+- Home, about, and resume pages in `src/pages`
+- Shared profile and site metadata in `src/data/site.ts`
+- SEO helpers, JSON-LD, RSS, sitemap, robots.txt, and web manifest routes
+- Global styling for a quiet, writing-first layout
+- A static resume PDF in `public/charles-weiss-resume.pdf`
 
 ## Writing
 
