@@ -11,6 +11,7 @@ interface Props {
   canonicalPath?: string;
   image?: string;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  keywords?: string[];
   noindex?: boolean;
   ogType?: "article" | "profile" | "website";
 }
@@ -21,6 +22,7 @@ const {
   canonicalPath = Astro.url.pathname,
   image = defaultImage,
   jsonLd,
+  keywords = [],
   noindex = false,
   ogType = "website",
 } = Astro.props;
@@ -34,6 +36,7 @@ const imageUrl = image.startsWith("http") ? image : absoluteUrl(image);
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href={canonicalUrl} />
@@ -45,9 +48,12 @@ const imageUrl = image.startsWith("http") ? image : absoluteUrl(image);
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:type" content={imageUrl.endsWith(".png") ? "image/png" : "image/svg+xml"} />
     <meta property="og:site_name" content={profile.domain} />
     <meta property="og:locale" content="en_CA" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@charleswdev" />
     <meta name="twitter:creator" content="@charleswdev" />
     <meta name="twitter:title" content={title} />

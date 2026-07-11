@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogSchema, graph, personSchema, tagSlug, websiteSchema } from "../../utils/seo";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const tags = Array.from(new Set(posts.flatMap((post) => post.data.tags))).sort();
+---
+
+<BaseLayout
+  title="Topics | charlesw.dev"
+  description="Browse charlesw.dev posts by topic."
+  canonicalPath="/tags/"
+  jsonLd={graph(personSchema, websiteSchema, blogSchema)}
+>
+  <main>
+    <article class="article">
+      <header class="article-header">
+        <p class="eyebrow">Topics</p>
+        <h1>Topics</h1>
+        <p>Browse posts by recurring themes across software, payments, product, and engineering leadership.</p>
+      </header>
+      <ul class="topic-list topic-list-large">
+        {tags.map((tag) => <li><a href={`/tags/${tagSlug(tag)}/`}>{tag}</a></li>)}
+      </ul>
+    </article>
+  </main>
+</BaseLayout>

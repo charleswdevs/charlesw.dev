@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">charlesw.dev</title>
+  <desc id="desc">Personal technical blog by Charles Weiss.</desc>
+  <rect width="1200" height="630" fill="#fbfaf7"/>
+  <rect x="72" y="72" width="1056" height="486" rx="18" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+  <rect x="112" y="112" width="72" height="72" rx="12" fill="#2d3130"/>
+  <text x="148" y="158" fill="#fffaf0" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" text-anchor="middle">CW</text>
+  <text x="112" y="278" fill="#20231f" font-family="Inter, Arial, sans-serif" font-size="92" font-weight="800">charlesw.dev</text>
+  <text x="116" y="348" fill="#315f4b" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Notes on software, product, payments, and engineering leadership</text>
+  <line x1="116" y1="410" x2="1084" y2="410" stroke="#ded8cc" stroke-width="2"/>
+  <text x="116" y="476" fill="#62665f" font-family="Inter, Arial, sans-serif" font-size="25">Charles Weiss · Montreal · Product and Technology Executive</text>
+  <circle cx="1084" cy="146" r="12" fill="#a9473f"/>
+  <circle cx="1044" cy="146" r="12" fill="#b98a36"/>
+  <circle cx="1004" cy="146" r="12" fill="#315f4b"/>
+</svg>
