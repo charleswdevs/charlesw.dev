@@ -35,12 +35,14 @@ const articleClasses = ["article", post.id === "getting-here" && "timeline-post"
   .join(" ");
 
 const postUrl = absoluteUrl(`/blog/${post.id}/`);
+const postImages = post.data.images.map((image) => absoluteUrl(image));
 const articleSchema = {
   "@type": "BlogPosting",
   "@id": `${postUrl}#article`,
   headline: post.data.title,
   description: post.data.description,
   url: postUrl,
+  image: postImages,
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   author: {
@@ -69,6 +71,7 @@ const breadcrumbs = [
   title={`${post.data.title} | charlesw.dev`}
   description={post.data.description}
   canonicalPath={`/blog/${post.id}/`}
+  image={post.data.images[0]}
   jsonLd={graph(
     personSchema,
     websiteSchema,

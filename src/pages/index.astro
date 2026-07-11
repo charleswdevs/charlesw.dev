@@ -2,7 +2,14 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/site";
-import { blogSchema, graph, personSchema, tagSlug, websiteSchema } from "../utils/seo";
+import {
+  absoluteUrl,
+  blogSchema,
+  graph,
+  personSchema,
+  tagSlug,
+  websiteSchema,
+} from "../utils/seo";
 
 const pageTitle = `${profile.name} | ${profile.domain}`;
 const posts = (await getCollection("blog"))
@@ -16,13 +23,61 @@ const formatDate = (date: Date) =>
   }).format(date);
 
 const tags = Array.from(new Set(posts.flatMap((post) => post.data.tags))).sort();
+
+const postItems = posts.map((post, index) => {
+  const url = absoluteUrl(`/blog/${post.id}/`);
+
+  return {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    position: index + 1,
+    headline: post.data.title,
+    description: post.data.description,
+    url,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    keywords: post.data.tags,
+    image: post.data.images.map((image) => absoluteUrl(image)),
+    author: {
+      "@id": "https://www.charlesw.dev/#person",
+    },
+    publisher: {
+      "@id": "https://www.charlesw.dev/#person",
+    },
+    isPartOf: {
+      "@id": "https://www.charlesw.dev/#blog",
+    },
+    inLanguage: "en-CA",
+  };
+});
+
+const homeBlogSchema = {
+  ...blogSchema,
+  blogPost: postItems.map((post) => ({
+    "@id": post["@id"],
+  })),
+};
+
+const itemListSchema = {
+  "@type": "ItemList",
+  "@id": "https://www.charlesw.dev/#posts",
+  name: `${profile.domain} posts`,
+  itemListElement: postItems.map((post) => ({
+    "@type": "ListItem",
+    position: post.position,
+    url: post.url,
+    item: {
+      "@id": post["@id"],
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title={pageTitle}
   description={profile.intro}
   canonicalPath="/"
-  jsonLd={graph(personSchema, websiteSchema, blogSchema)}
+  jsonLd={graph(personSchema, websiteSchema, homeBlogSchema, itemListSchema, ...postItems)}
 >
   <main>
     <section class="blog-hero" aria-label="Introduction">
