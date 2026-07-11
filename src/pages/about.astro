@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/site";
+import { graph, personSchema, websiteSchema } from "../utils/seo";
 ---
 
-<BaseLayout title={`About | ${profile.domain}`} description={profile.intro}>
+<BaseLayout
+  title={`About | ${profile.domain}`}
+  description={profile.intro}
+  canonicalPath="/about/"
+  jsonLd={graph(personSchema, websiteSchema)}
+  ogType="profile"
+>
   <main>
     <article class="article">
       <header class="article-header">

@@ -1,6 +1,13 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  absoluteUrl,
+  blogSchema,
+  graph,
+  personSchema,
+  websiteSchema,
+} from "../../utils/seo";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -17,14 +24,46 @@ const { Content } = await render(post);
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
     dateStyle: "long",
+    timeZone: "UTC",
   }).format(date);
 
 const articleClasses = ["article", post.id === "getting-here" && "timeline-post"]
   .filter(Boolean)
   .join(" ");
+
+const postUrl = absoluteUrl(`/blog/${post.id}/`);
+const articleSchema = {
+  "@type": "BlogPosting",
+  "@id": `${postUrl}#article`,
+  headline: post.data.title,
+  description: post.data.description,
+  url: postUrl,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: {
+    "@id": "https://www.charlesw.dev/#person",
+  },
+  publisher: {
+    "@id": "https://www.charlesw.dev/#person",
+  },
+  isPartOf: {
+    "@id": "https://www.charlesw.dev/#blog",
+  },
+  mainEntityOfPage: {
+    "@id": `${postUrl}#webpage`,
+  },
+  keywords: post.data.tags,
+  inLanguage: "en-CA",
+};
 ---
 
-<BaseLayout title={`${post.data.title} | charlesw.dev`} description={post.data.description}>
+<BaseLayout
+  title={`${post.data.title} | charlesw.dev`}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.id}/`}
+  jsonLd={graph(personSchema, websiteSchema, blogSchema, articleSchema)}
+  ogType="article"
+>
   <main>
     <article class={articleClasses}>
       <header class="article-header">
