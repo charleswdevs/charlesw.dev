@@ -5,6 +5,7 @@ const staticPages = [
   { path: "/", priority: "1.0", images: [] },
   { path: "/about/", priority: "0.7", images: [] },
   { path: "/resume/", priority: "0.7", images: [] },
+  { path: "/glossary/", priority: "0.7", images: [] },
   { path: "/tags/", priority: "0.6", images: [] },
 ];
 
