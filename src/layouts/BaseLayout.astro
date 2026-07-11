@@ -1,17 +1,32 @@
 ---
 import Header from "../components/Header.astro";
+import SeoJsonLd from "../components/SeoJsonLd.astro";
 import { profile } from "../data/site";
+import { absoluteUrl, defaultImage } from "../utils/seo";
 import "../styles/global.css";
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  image?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  noindex?: boolean;
+  ogType?: "article" | "profile" | "website";
 }
 
 const {
   title = `${profile.name} | ${profile.domain}`,
   description = profile.intro,
+  canonicalPath = Astro.url.pathname,
+  image = defaultImage,
+  jsonLd,
+  noindex = false,
+  ogType = "website",
 } = Astro.props;
+
+const canonicalUrl = absoluteUrl(canonicalPath);
+const imageUrl = image.startsWith("http") ? image : absoluteUrl(image);
 ---
 
 <!doctype html>
@@ -19,12 +34,27 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title={`${profile.domain} RSS`} href="/rss.xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#fbfaf7" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content={profile.domain} />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@charleswdev" />
+    <meta name="twitter:creator" content="@charleswdev" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <SeoJsonLd schema={jsonLd} />
     <title>{title}</title>
   </head>
   <body>

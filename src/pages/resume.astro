@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { graph, personSchema, websiteSchema } from "../utils/seo";
 
 const roles = [
   {
@@ -83,6 +84,23 @@ const strengths = [
 <BaseLayout
   title="Resume | charlesw.dev"
   description="Resume for Charles Weiss, product and technology executive."
+  canonicalPath="/resume/"
+  jsonLd={graph(
+    personSchema,
+    websiteSchema,
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.charlesw.dev/resume/#webpage",
+      url: "https://www.charlesw.dev/resume/",
+      name: "Resume | charlesw.dev",
+      description: "Resume for Charles Weiss, product and technology executive.",
+      about: {
+        "@id": "https://www.charlesw.dev/#person",
+      },
+      inLanguage: "en-CA",
+    },
+  )}
+  ogType="profile"
 >
   <main>
     <article class="resume">
