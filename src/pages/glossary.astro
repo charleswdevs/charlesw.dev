@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { glossaryCategories, glossaryEntries } from "../data/glossary.mjs";
+import { graph, personSchema, websiteSchema } from "../utils/seo";
+
+const groupedEntries = glossaryCategories
+  .map((category) => ({
+    category,
+    entries: glossaryEntries.filter((entry) => entry.category === category),
+  }))
+  .filter((group) => group.entries.length > 0);
+
+const glossarySchema = {
+  "@type": "DefinedTermSet",
+  "@id": "https://www.charlesw.dev/glossary/#terms",
+  name: "Payment Glossary",
+  url: "https://www.charlesw.dev/glossary/",
+  hasDefinedTerm: glossaryEntries.map((entry) => ({
+    "@type": "DefinedTerm",
+    "@id": `https://www.charlesw.dev/glossary/#${entry.slug}`,
+    name: entry.term,
+    description: entry.definition,
+    inDefinedTermSet: "https://www.charlesw.dev/glossary/#terms",
+  })),
+};
+---
+
+<BaseLayout
+  title="Payment Glossary | charlesw.dev"
+  description="A glossary of payment terms used across charlesw.dev."
+  canonicalPath="/glossary/"
+  jsonLd={graph(personSchema, websiteSchema, glossarySchema)}
+>
+  <main>
+    <article class="article glossary-page">
+      <header class="article-header">
+        <p class="eyebrow">Glossary</p>
+        <h1>Payment Glossary</h1>
+        <p>Definitions for the payment lifecycle, metrics, actors, and failure modes used across this site.</p>
+      </header>
+
+      <nav class="glossary-index" aria-label="Glossary categories">
+        {
+          groupedEntries.map((group) => (
+            <a href={`#${group.category.toLowerCase().replaceAll(" ", "-")}`}>
+              {group.category}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="glossary-sections">
+        {
+          groupedEntries.map((group) => (
+            <section id={group.category.toLowerCase().replaceAll(" ", "-")} class="glossary-section">
+              <h2>{group.category}</h2>
+              <dl class="glossary-list">
+                {group.entries.map((entry) => (
+                  <div id={entry.slug} class="glossary-entry">
+                    <dt>{entry.term}</dt>
+                    <dd>{entry.definition}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </main>
+</BaseLayout>
