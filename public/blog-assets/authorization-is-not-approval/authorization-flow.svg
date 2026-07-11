@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 430" role="img" aria-labelledby="title desc">
+  <title id="title">Distributed card-not-present authorization flow</title>
+  <desc id="desc">A card-not-present authorization request moves from the merchant application through merchant checks, gateway, processor or acquirer, card network, and issuer, then returns a response.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#315f4b"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#2d3130" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="430" rx="24" fill="#fbfaf7"/>
+  <text x="56" y="58" fill="#20231f" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="760">Authorization is a distributed process</text>
+  <text x="56" y="92" fill="#62665f" font-family="Inter, Arial, sans-serif" font-size="18">The issuer may make the final approval decision, but several systems can transform, reject, or interrupt the request first.</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <g filter="url(#shadow)">
+      <rect x="56" y="160" width="154" height="100" rx="14" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+      <text x="133" y="198" text-anchor="middle" fill="#20231f" font-size="18" font-weight="760">Merchant</text>
+      <text x="133" y="225" text-anchor="middle" fill="#62665f" font-size="15">application</text>
+    </g>
+    <g filter="url(#shadow)">
+      <rect x="250" y="160" width="154" height="100" rx="14" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+      <text x="327" y="191" text-anchor="middle" fill="#20231f" font-size="18" font-weight="760">Merchant</text>
+      <text x="327" y="216" text-anchor="middle" fill="#62665f" font-size="15">fraud and</text>
+      <text x="327" y="239" text-anchor="middle" fill="#62665f" font-size="15">eligibility</text>
+    </g>
+    <g filter="url(#shadow)">
+      <rect x="444" y="160" width="154" height="100" rx="14" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+      <text x="521" y="216" text-anchor="middle" fill="#20231f" font-size="18" font-weight="760">Gateway</text>
+    </g>
+    <g filter="url(#shadow)">
+      <rect x="638" y="160" width="154" height="100" rx="14" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+      <text x="715" y="194" text-anchor="middle" fill="#20231f" font-size="18" font-weight="760">Processor</text>
+      <text x="715" y="221" text-anchor="middle" fill="#62665f" font-size="15">or acquirer</text>
+    </g>
+    <g filter="url(#shadow)">
+      <rect x="832" y="160" width="154" height="100" rx="14" fill="#fffdf8" stroke="#ded8cc" stroke-width="2"/>
+      <text x="909" y="198" text-anchor="middle" fill="#20231f" font-size="18" font-weight="760">Card</text>
+      <text x="909" y="225" text-anchor="middle" fill="#62665f" font-size="15">network</text>
+    </g>
+    <g filter="url(#shadow)">
+      <rect x="1026" y="160" width="154" height="100" rx="14" fill="#315f4b" stroke="#315f4b" stroke-width="2"/>
+      <text x="1103" y="199" text-anchor="middle" fill="#fffaf0" font-size="18" font-weight="760">Issuer</text>
+      <text x="1103" y="226" text-anchor="middle" fill="#e9efe9" font-size="15">decision</text>
+    </g>
+    <path d="M210 210 H250" stroke="#315f4b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M404 210 H444" stroke="#315f4b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M598 210 H638" stroke="#315f4b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M792 210 H832" stroke="#315f4b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M986 210 H1026" stroke="#315f4b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M1103 270 C1103 332 133 332 133 270" fill="none" stroke="#a9473f" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+    <text x="618" y="366" text-anchor="middle" fill="#a9473f" font-size="17" font-weight="720">Response returns through the same chain</text>
+    <rect x="56" y="320" width="224" height="42" rx="21" fill="#eee7dc"/>
+    <text x="168" y="347" text-anchor="middle" fill="#2d3130" font-size="15" font-weight="720">Validate</text>
+    <rect x="308" y="320" width="224" height="42" rx="21" fill="#eee7dc"/>
+    <text x="420" y="347" text-anchor="middle" fill="#2d3130" font-size="15" font-weight="720">Enrich or transform</text>
+    <rect x="560" y="320" width="224" height="42" rx="21" fill="#eee7dc"/>
+    <text x="672" y="347" text-anchor="middle" fill="#2d3130" font-size="15" font-weight="720">Route or reject</text>
+    <rect x="812" y="320" width="224" height="42" rx="21" fill="#eee7dc"/>
+    <text x="924" y="347" text-anchor="middle" fill="#2d3130" font-size="15" font-weight="720">Approve or decline</text>
+  </g>
+</svg>

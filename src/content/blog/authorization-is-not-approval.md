@@ -36,18 +36,9 @@ That is the simple model.
 
 The actual card-not-present path is more distributed.
 
-```mermaid
-flowchart LR
-    M[Merchant application] --> F[Merchant fraud and eligibility]
-    F --> G[Gateway]
-    G --> P[Processor or acquirer]
-    P --> N[Card network]
-    N --> I[Issuer]
-    I --> N
-    N --> P
-    P --> G
-    G --> M
-```
+![A distributed card-not-present authorization flow showing merchant application, merchant fraud and eligibility, gateway, processor or acquirer, card network, issuer decision, and the returning response.](/blog-assets/authorization-is-not-approval/authorization-flow.svg)
+
+*A card-not-present authorization request is evaluated by multiple systems before and after the issuer decision.*
 
 An authorization request may be validated, enriched, transformed, tokenized, rerouted, rejected, or interrupted before it ever reaches the issuer.
 
@@ -295,17 +286,9 @@ All three numbers are correct.
 
 None is interchangeable.
 
-```mermaid
-flowchart TD
-    A["1,000 invoices due<br/>100.0% cumulative"] --> B["970 eligible<br/>97.0% cumulative<br/>97.0% stage conversion"]
-    B --> C["950 initial attempts<br/>95.0% cumulative<br/>97.9% stage conversion"]
-    C --> D["760 initial approvals<br/>76.0% cumulative<br/>80.0% stage conversion"]
-    D --> E["820 eventual approvals<br/>82.0% cumulative<br/>+60 retry recoveries"]
-    E --> F["810 captured<br/>81.0% cumulative<br/>98.8% stage conversion"]
-    F --> G["802 settled<br/>80.2% cumulative<br/>99.0% stage conversion"]
-    G --> H["790 after refunds<br/>79.0% cumulative<br/>98.5% stage conversion"]
-    H --> I["775 retained<br/>77.5% cumulative<br/>98.1% stage conversion"]
-```
+![A payment success funnel showing 1,000 invoices due, 970 eligible invoices, 950 initial authorization attempts, 760 initial approvals, 820 eventual approvals, 810 captured payments, 802 settled payments, 790 payments after refunds, and 775 retained payments.](/blog-assets/authorization-is-not-approval/payment-success-funnel.svg)
+
+*The funnel shows why approval rate, eventual approval, and retained revenue are related but not interchangeable.*
 
 > The figures in this example are illustrative and are not intended as industry benchmarks. They reflect patterns consistent with payment performance data the team at Revaly has observed across card-not-present merchant environments.
 
@@ -359,8 +342,7 @@ The payments stack is where acquired demand becomes realized and retained value.
 
 ## Sources and further reading
 
-- Visa, *Verified by Visa Acquirer and Merchant Implementation Guide*, for its definition of issuer authorization.
-- Mastercard, *Mastercard Switching Explained*, for the separation of authorization, clearing, and settlement.
-- Visa Developer, *Glossary*, for the relationship between authorization, clearing, and settlement.
-- Stripe, *Place a Hold on a Payment Method*, for separate authorization and capture mechanics.
-- Adyen, *Payments Lifecycle* and *Adyen Glossary*, for authorization, capture, and settlement states.
+- Visa Developer, [*Glossary*](https://developer.visa.com/pages/visa-developer-glossary), for authorization, clearing, and settlement terminology.
+- Mastercard, [*Transaction Processing Rules*](https://www.mastercard.us/content/dam/public/mastercardcom/na/global-site/documents/transaction-processing-rules.pdf), for the separation of authorization, clearing, and settlement activities.
+- Stripe, [*Place a hold on a payment method*](https://docs.stripe.com/payments/place-a-hold-on-a-payment-method), for separate authorization and capture mechanics.
+- Adyen, [*Payments lifecycle*](https://docs.adyen.com/online-payments/payment-lifecycle/) and [*Glossary*](https://docs.adyen.com/development-resources/glossary/), for authorization, capture, and settlement states.
