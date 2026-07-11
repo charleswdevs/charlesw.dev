@@ -2,7 +2,6 @@
 title: "Authorization Is Not Approval"
 description: "A technical guide to understanding where payment performance becomes revenue performance."
 pubDate: 2026-07-11
-draft: true
 tags: ["payments", "authorization", "card-not-present", "saas", "payment-optimization", "engineering"]
 ---
 
