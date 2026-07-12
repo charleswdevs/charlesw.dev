@@ -18,6 +18,8 @@ const skippedTags = new Set([
   "h5",
   "h6",
   "head",
+  "li",
+  "nav",
   "pre",
   "script",
   "style",
