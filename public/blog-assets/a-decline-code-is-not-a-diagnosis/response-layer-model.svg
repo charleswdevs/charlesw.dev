@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+  <title id="title">One failed payment can contain many response fields</title>
+  <desc id="desc">A layered response model separating outcome, API error, gateway decline reason, processor code, network code, and merchant classification.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .layer { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .label { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 30px; font-weight: 760; }
+      .small { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 21px; }
+      .code { fill: #20231f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 27px; font-weight: 760; }
+      .badge { fill: #315f4b; }
+      .badge2 { fill: #a9473f; }
+      .badge3 { fill: #b98a36; }
+      .badgeText { fill: #fffaf0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 18px; font-weight: 760; }
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="1050" />
+  <text class="label" x="80" y="90" font-size="42">The merchant does not receive one response code</text>
+  <text class="small" x="80" y="130">These fields answer different questions and should be stored separately.</text>
+
+  <g transform="translate(130 210)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="57" y="62">Outcome</text>
+    <text class="code" x="190" y="65">status: failed</text>
+    <text class="small" x="620" y="64">Did the gateway consider the payment successful?</text>
+  </g>
+  <g transform="translate(130 340)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge3" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="61" y="62">API</text>
+    <text class="code" x="190" y="65">error_type: card_error</text>
+    <text class="small" x="620" y="64">What kind of API-level error was returned?</text>
+  </g>
+  <g transform="translate(130 470)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge2" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="54" y="62">Gateway</text>
+    <text class="code" x="190" y="65">decline_code: do_not_honor</text>
+    <text class="small" x="620" y="64">How did the gateway categorize the failure?</text>
+  </g>
+  <g transform="translate(130 600)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="49" y="62">Processor</text>
+    <text class="code" x="190" y="65">processor_code: 05</text>
+    <text class="small" x="620" y="64">What downstream response was exposed?</text>
+  </g>
+  <g transform="translate(130 730)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge3" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="53" y="62">Network</text>
+    <text class="code" x="190" y="65">network_code: null</text>
+    <text class="small" x="620" y="64">Was a lower-level network value preserved?</text>
+  </g>
+  <g transform="translate(130 860)">
+    <rect class="layer" width="1340" height="110" rx="8" />
+    <rect class="badge2" x="32" y="31" width="120" height="48" rx="6" />
+    <text class="badgeText" x="49" y="62">Merchant</text>
+    <text class="code" x="190" y="65">classification: ambiguous_decline</text>
+    <text class="small" x="740" y="64">How does the merchant act on it?</text>
+  </g>
+</svg>

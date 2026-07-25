@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">Payment response translation pipeline</title>
+  <desc id="desc">A decline response moving from issuer decision through network, processor, gateway, and merchant systems, losing diagnostic detail at each translation boundary.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .panel { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .source { fill: #315f4b; }
+      .mid { fill: #2d3130; }
+      .warn { fill: #a9473f; }
+      .label { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 28px; font-weight: 760; }
+      .small { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 20px; }
+      .code { fill: #20231f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 24px; font-weight: 700; }
+      .arrow { stroke: #b98a36; stroke-width: 8; stroke-linecap: round; }
+      .note { fill: #fffaf0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 720; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#b98a36" />
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="860" />
+  <text class="label" x="80" y="86" font-size="40">A decline response is translated before the merchant sees it</text>
+  <text class="small" x="80" y="124">Each boundary can preserve, rename, normalize, omit, or collapse upstream information.</text>
+
+  <g transform="translate(80 210)">
+    <rect class="panel" width="240" height="210" rx="8" />
+    <circle class="source" cx="44" cy="48" r="18" />
+    <text class="label" x="76" y="58">Issuer</text>
+    <text class="small" x="30" y="104">Decision context</text>
+    <text class="small" x="30" y="136">may stay internal</text>
+    <text class="code" x="30" y="180">generic decline</text>
+  </g>
+  <line class="arrow" x1="340" y1="315" x2="450" y2="315" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(470 210)">
+    <rect class="panel" width="240" height="210" rx="8" />
+    <circle class="mid" cx="44" cy="48" r="18" />
+    <text class="label" x="76" y="58">Network</text>
+    <text class="small" x="30" y="104">Message field</text>
+    <text class="small" x="30" y="136">or stand-in result</text>
+    <text class="code" x="30" y="180">05</text>
+  </g>
+  <line class="arrow" x1="730" y1="315" x2="840" y2="315" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(860 210)">
+    <rect class="panel" width="240" height="210" rx="8" />
+    <circle class="mid" cx="44" cy="48" r="18" />
+    <text class="label" x="76" y="58">Processor</text>
+    <text class="small" x="30" y="104">Host response</text>
+    <text class="small" x="30" y="136">or mapped value</text>
+    <text class="code" x="30" y="180">05 / Do Not Honor</text>
+  </g>
+  <line class="arrow" x1="1120" y1="315" x2="1230" y2="315" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(1250 210)">
+    <rect class="panel" width="270" height="210" rx="8" />
+    <circle class="warn" cx="44" cy="48" r="18" />
+    <text class="label" x="76" y="58">Gateway</text>
+    <text class="small" x="30" y="104">Normalized reason</text>
+    <text class="small" x="30" y="136">for merchant API</text>
+    <text class="code" x="30" y="180">do_not_honor</text>
+  </g>
+
+  <g transform="translate(360 560)">
+    <rect class="panel" width="880" height="150" rx="8" />
+    <text class="label" x="38" y="58">Merchant system</text>
+    <text class="small" x="38" y="96">Operational classification may be useful, but it does not recreate lost issuer detail.</text>
+    <rect x="620" y="40" width="210" height="58" rx="6" fill="#2d3130" />
+    <text class="note" x="650" y="77">soft_decline</text>
+  </g>
+  <line class="arrow" x1="1385" y1="440" x2="1020" y2="555" marker-end="url(#arrowhead)" />
+</svg>

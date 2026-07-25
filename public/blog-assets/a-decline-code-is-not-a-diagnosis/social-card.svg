@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">A Decline Code Is Not a Diagnosis</title>
+  <desc id="desc">Social card for an article about payment decline response translation.</desc>
+  <rect width="1200" height="630" fill="#fbfaf7" />
+  <rect x="58" y="58" width="1084" height="514" rx="10" fill="#fffdf8" stroke="#ded8cc" stroke-width="3" />
+  <text x="96" y="130" fill="#315f4b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="760">PAYMENT RESPONSE INTERPRETATION</text>
+  <text x="96" y="224" fill="#20231f" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="78" font-weight="820">A Decline Code</text>
+  <text x="96" y="314" fill="#20231f" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="78" font-weight="820">Is Not a Diagnosis</text>
+  <text x="96" y="390" fill="#62665f" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30">How payment responses lose meaning across</text>
+  <text x="96" y="432" fill="#62665f" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30">gateways, processors, networks, and merchant systems.</text>
+  <g transform="translate(96 492)">
+    <rect width="124" height="56" rx="7" fill="#315f4b" />
+    <text x="33" y="37" fill="#fffaf0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" font-weight="760">05</text>
+    <path d="M150 28 H235" stroke="#b98a36" stroke-width="7" stroke-linecap="round" />
+    <path d="M226 15 L245 28 L226 41" fill="none" stroke="#b98a36" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="272" width="258" height="56" rx="7" fill="#2d3130" />
+    <text x="300" y="37" fill="#fffaf0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" font-weight="760">do_not_honor</text>
+    <path d="M555 28 H640" stroke="#b98a36" stroke-width="7" stroke-linecap="round" />
+    <path d="M631 15 L650 28 L631 41" fill="none" stroke="#b98a36" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="678" width="230" height="56" rx="7" fill="#a9473f" />
+    <text x="707" y="37" fill="#fffaf0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" font-weight="760">soft_decline</text>
+  </g>
+</svg>

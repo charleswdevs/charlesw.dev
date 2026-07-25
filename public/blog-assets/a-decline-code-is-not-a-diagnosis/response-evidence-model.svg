@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">A response code is evidence, not diagnosis</title>
+  <desc id="desc">A model separating source response, normalized response, and operational classification so merchant reporting can preserve provenance.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .card { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .source { fill: #315f4b; }
+      .norm { fill: #b98a36; }
+      .policy { fill: #a9473f; }
+      .label { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 31px; font-weight: 760; }
+      .small { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 22px; }
+      .code { fill: #20231f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 25px; font-weight: 760; }
+      .white { fill: #fffaf0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 760; }
+      .arrow { stroke: #2d3130; stroke-width: 6; fill: none; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#2d3130" />
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="980" />
+  <text class="label" x="80" y="90" font-size="42">Preserve evidence, abstraction, and policy separately</text>
+  <text class="small" x="80" y="130">The layers can be joined for reporting, but they should not overwrite one another.</text>
+
+  <g transform="translate(90 245)">
+    <rect class="card" width="430" height="450" rx="8" />
+    <rect class="source" x="34" y="34" width="225" height="52" rx="6" />
+    <text class="white" x="56" y="67">Source response</text>
+    <text class="label" x="34" y="138">Historical evidence</text>
+    <text class="small" x="34" y="190">What a gateway, processor,</text>
+    <text class="small" x="34" y="224">acquirer, host, or network</text>
+    <text class="small" x="34" y="258">actually returned.</text>
+    <text class="code" x="34" y="336">processor_code: "05"</text>
+    <text class="code" x="34" y="380">message: "Do Not Honor"</text>
+  </g>
+
+  <path class="arrow" d="M555 470 H675" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(705 245)">
+    <rect class="card" width="445" height="450" rx="8" />
+    <rect class="norm" x="34" y="34" width="270" height="52" rx="6" />
+    <text class="white" x="56" y="67">Normalized response</text>
+    <text class="label" x="34" y="138">Common vocabulary</text>
+    <text class="small" x="34" y="190">How heterogeneous provider</text>
+    <text class="small" x="34" y="224">responses are translated for</text>
+    <text class="small" x="34" y="258">merchant reporting.</text>
+    <text class="code" x="34" y="336">reason: "do_not_honor"</text>
+    <text class="code" x="34" y="380">outcome: "not_approved"</text>
+  </g>
+
+  <path class="arrow" d="M1185 470 H1305" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(1335 245)">
+    <rect class="card" width="185" height="450" rx="8" />
+    <rect class="policy" x="30" y="34" width="125" height="52" rx="6" />
+    <text class="white" x="63" y="67">Policy</text>
+    <text class="label" x="34" y="138" font-size="25">Action</text>
+    <text class="small" x="34" y="190">retry?</text>
+    <text class="small" x="34" y="224">route?</text>
+    <text class="small" x="34" y="258">ask user?</text>
+    <text class="code" x="34" y="336" font-size="22">soft</text>
+  </g>
+
+  <g transform="translate(290 780)">
+    <rect class="card" width="1020" height="100" rx="8" />
+    <text class="label" x="36" y="62">A decline code becomes useful when its provenance is preserved.</text>
+  </g>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620" role="img" aria-labelledby="title desc">
+  <title id="title">A generic issuer decision becoming a merchant decline classification</title>
+  <desc id="desc">A payment response moving from issuer decision to network response, processor representation, gateway decline reason, and merchant classification.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .card { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .green { fill: #315f4b; }
+      .gold { fill: #b98a36; }
+      .red { fill: #a9473f; }
+      .ink { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 27px; font-weight: 760; }
+      .muted { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 20px; }
+      .code { fill: #20231f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 23px; font-weight: 760; }
+      .white { fill: #fffaf0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 18px; font-weight: 760; }
+      .arrow { stroke: #2d3130; stroke-width: 6; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#2d3130" />
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="620" />
+  <text class="ink" x="80" y="86" font-size="42">The same ambiguity can be renamed at every boundary</text>
+  <text class="muted" x="80" y="126">The final merchant classification may be actionable without adding diagnostic detail.</text>
+
+  <g transform="translate(70 230)">
+    <rect class="card" width="250" height="250" rx="8" />
+    <rect class="green" x="26" y="26" width="86" height="44" rx="6" />
+    <text class="white" x="51" y="55">01</text>
+    <text class="ink" x="26" y="122">Issuer</text>
+    <text class="ink" x="26" y="158">decision</text>
+    <text class="muted" x="26" y="214">Non-approval</text>
+  </g>
+  <line class="arrow" x1="338" y1="355" x2="378" y2="355" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(395 230)">
+    <rect class="card" width="250" height="250" rx="8" />
+    <rect class="gold" x="26" y="26" width="86" height="44" rx="6" />
+    <text class="white" x="51" y="55">02</text>
+    <text class="ink" x="26" y="122">Network</text>
+    <text class="ink" x="26" y="158">response</text>
+    <text class="code" x="26" y="214">05</text>
+  </g>
+  <line class="arrow" x1="663" y1="355" x2="703" y2="355" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(720 230)">
+    <rect class="card" width="250" height="250" rx="8" />
+    <rect class="gold" x="26" y="26" width="86" height="44" rx="6" />
+    <text class="white" x="51" y="55">03</text>
+    <text class="ink" x="26" y="122">Processor</text>
+    <text class="ink" x="26" y="158">representation</text>
+    <text class="code" x="26" y="214">05 / DNH</text>
+  </g>
+  <line class="arrow" x1="988" y1="355" x2="1028" y2="355" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(1045 230)">
+    <rect class="card" width="250" height="250" rx="8" />
+    <rect class="red" x="26" y="26" width="86" height="44" rx="6" />
+    <text class="white" x="51" y="55">04</text>
+    <text class="ink" x="26" y="122">Gateway</text>
+    <text class="ink" x="26" y="158">reason</text>
+    <text class="code" x="26" y="214">do_not_honor</text>
+  </g>
+  <line class="arrow" x1="1313" y1="355" x2="1353" y2="355" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(1370 230)">
+    <rect class="card" width="160" height="250" rx="8" />
+    <rect class="red" x="26" y="26" width="86" height="44" rx="6" />
+    <text class="white" x="51" y="55">05</text>
+    <text class="ink" x="26" y="122" font-size="24">Merchant</text>
+    <text class="ink" x="26" y="154" font-size="24">class</text>
+    <text class="code" x="26" y="214" font-size="20">soft</text>
+  </g>
+</svg>

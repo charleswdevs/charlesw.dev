@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">The authorization response return path</title>
+  <desc id="desc">The response path from issuing financial institution through card network, processor or acquirer, gateway or PSP, merchant payment service, and merchant reporting systems.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .row { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .green { fill: #315f4b; }
+      .dark { fill: #2d3130; }
+      .red { fill: #a9473f; }
+      .ink { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 30px; font-weight: 760; }
+      .muted { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 21px; }
+      .white { fill: #fffaf0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 760; }
+      .arrow { stroke: #b98a36; stroke-width: 7; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#b98a36" />
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="1120" />
+  <text class="ink" x="80" y="86" font-size="42">The merchant response has already crossed several systems</text>
+  <text class="muted" x="80" y="126">At each boundary, fields can be preserved, translated, enriched, omitted, or collapsed.</text>
+
+  <g transform="translate(110 220)">
+    <rect class="row" width="1380" height="92" rx="8" />
+    <rect class="green" x="28" y="22" width="76" height="48" rx="6" />
+    <text class="white" x="51" y="54">01</text>
+    <text class="ink" x="135" y="57">Issuing financial institution</text>
+    <text class="muted" x="760" y="57">Makes or contributes to the authorization response</text>
+  </g>
+  <line class="arrow" x1="800" y1="330" x2="800" y2="385" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(110 405)">
+    <rect class="row" width="1380" height="92" rx="8" />
+    <rect class="dark" x="28" y="22" width="76" height="48" rx="6" />
+    <text class="white" x="51" y="54">02</text>
+    <text class="ink" x="135" y="57">Card network</text>
+    <text class="muted" x="760" y="57">Carries or standardizes network-facing message fields</text>
+  </g>
+  <line class="arrow" x1="800" y1="515" x2="800" y2="570" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(110 590)">
+    <rect class="row" width="1380" height="92" rx="8" />
+    <rect class="dark" x="28" y="22" width="76" height="48" rx="6" />
+    <text class="white" x="51" y="54">03</text>
+    <text class="ink" x="135" y="57">Processor or acquirer</text>
+    <text class="muted" x="760" y="57">May expose host values, mapped values, or processor codes</text>
+  </g>
+  <line class="arrow" x1="800" y1="700" x2="800" y2="755" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(110 775)">
+    <rect class="row" width="1380" height="92" rx="8" />
+    <rect class="dark" x="28" y="22" width="76" height="48" rx="6" />
+    <text class="white" x="51" y="54">04</text>
+    <text class="ink" x="135" y="57">Gateway or payment service provider</text>
+    <text class="muted" x="760" y="57">Normalizes gateway-facing response fields</text>
+  </g>
+  <line class="arrow" x1="800" y1="885" x2="800" y2="940" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(110 960)">
+    <rect class="row" width="1380" height="92" rx="8" />
+    <rect class="red" x="28" y="22" width="76" height="48" rx="6" />
+    <text class="white" x="51" y="54">05</text>
+    <text class="ink" x="135" y="57">Merchant payment and reporting systems</text>
+    <text class="muted" x="880" y="57">Classify for action and reporting</text>
+  </g>
+</svg>
