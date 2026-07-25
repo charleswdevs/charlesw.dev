@@ -81,7 +81,7 @@ Operationally, they are not the same failure.
 
 In our work at Revaly, we regularly see payment environments where provider responses, technical failures, merchant decisions, and issuer declines are combined in reporting. The result is a decline rate that describes several different failure domains while providing little guidance about which system should be improved.
 
-That is a larger subject on its own. The important point here is that authorization is a distributed process, not a single function call to an issuer.
+That is a larger subject on its own. I explore that response-code problem in [A Decline Code Is Not a Diagnosis](/blog/a-decline-code-is-not-a-diagnosis/). The important point here is that authorization is a distributed process, not a single function call to an issuer.
 
 ## Approval is permission to continue
 

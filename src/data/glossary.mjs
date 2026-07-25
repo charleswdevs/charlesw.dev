@@ -180,7 +180,7 @@ export const glossaryEntries = [
     slug: "gateway",
     category: "Payment actors",
     definition:
-      "A provider system that accepts, validates, and forwards payment requests between the merchant and downstream payment infrastructure.",
+      "A provider system that accepts, validates, translates, and forwards payment requests and responses between the merchant and downstream payment infrastructure.",
     aliases: ["payment gateway", "payment gateways"],
   },
   {
@@ -188,7 +188,7 @@ export const glossaryEntries = [
     slug: "processor",
     category: "Payment actors",
     definition:
-      "A payment provider that processes and routes transaction messages between merchants, acquirers, networks, and other payment participants.",
+      "A payment provider that processes, translates, and routes transaction messages between merchants, acquirers, networks, and other payment participants.",
     aliases: ["processors"],
   },
   {
@@ -212,7 +212,7 @@ export const glossaryEntries = [
     slug: "issuer",
     category: "Payment actors",
     definition:
-      "The issuing financial institution that evaluates a transaction and returns an authorization response.",
+      "The issuing financial institution that evaluates a transaction and returns or contributes to an authorization response.",
     aliases: ["issuers", "issuing financial institution"],
   },
   {
@@ -240,11 +240,99 @@ export const glossaryEntries = [
     aliases: ["financial institutions"],
   },
   {
+    term: "Response code",
+    slug: "response-code",
+    category: "Response interpretation",
+    definition:
+      "A code returned by a payment participant or provider to describe an authorization, payment, processing, or API outcome. Its meaning depends on the system that created it and whether it is raw or normalized.",
+    aliases: ["response codes"],
+  },
+  {
+    term: "Decline code",
+    slug: "decline-code",
+    category: "Response interpretation",
+    definition:
+      "A merchant-facing response value that categorizes an unsuccessful authorization or payment outcome. A decline code is evidence about the response path, not a complete diagnosis of the issuer's decision.",
+    aliases: ["decline codes"],
+  },
+  {
+    term: "Do Not Honor",
+    slug: "do-not-honor",
+    category: "Response interpretation",
+    definition:
+      "A common generic authorization response often associated with ISO-style code 05 and merchant-facing values such as do_not_honor. It indicates non-approval without reliably exposing the issuer's specific reason.",
+    aliases: ["do_not_honor", "05", "05: Do Not Honor"],
+  },
+  {
+    term: "Gateway normalization",
+    slug: "gateway-normalization",
+    category: "Response interpretation",
+    definition:
+      "The process of translating heterogeneous processor, acquirer, network, or host responses into a gateway-defined vocabulary that is easier for merchants to consume.",
+    aliases: ["normalized gateway response", "gateway normalized", "normalization"],
+  },
+  {
+    term: "Raw response",
+    slug: "raw-response",
+    category: "Response interpretation",
+    definition:
+      "A lower-level response value or payload preserved from a processor, acquirer, network, host, or other downstream participant before merchant-side normalization.",
+    aliases: ["raw responses", "raw acquirer response", "raw acquirer data", "raw response payload"],
+  },
+  {
+    term: "Processor response code",
+    slug: "processor-response-code",
+    category: "Response interpretation",
+    definition:
+      "A response code exposed by a processor or processor-facing gateway field. It may be a raw downstream value, a host value, or a processor-normalized code depending on the integration.",
+    aliases: ["processor response codes"],
+  },
+  {
+    term: "Network response code",
+    slug: "network-response-code",
+    category: "Response interpretation",
+    definition:
+      "A response value associated with a card network message or network-facing field. It should be stored separately from gateway and merchant classifications when available.",
+    aliases: ["network response codes", "network decline code", "network decline codes"],
+  },
+  {
+    term: "Network advice code",
+    slug: "network-advice-code",
+    category: "Response interpretation",
+    definition:
+      "Supplemental network-provided information that may guide merchant action after a decline, such as whether or when a retry should be attempted.",
+    aliases: ["network advice codes", "advice code", "advice codes"],
+  },
+  {
+    term: "Soft decline",
+    slug: "soft-decline",
+    category: "Response interpretation",
+    definition:
+      "An operational classification for an unsuccessful payment outcome that may be recoverable through retry, updated information, authentication, routing changes, or later context.",
+    aliases: ["soft declines", "soft_decline", "soft_declined"],
+  },
+  {
+    term: "Hard decline",
+    slug: "hard-decline",
+    category: "Response interpretation",
+    definition:
+      "An operational classification for an unsuccessful payment outcome treated as terminal for the current credential, request, or context unless materially different information is supplied.",
+    aliases: ["hard declines", "hard_decline", "hard_declined"],
+  },
+  {
+    term: "Unknown outcome",
+    slug: "unknown-outcome",
+    category: "Response interpretation",
+    definition:
+      "A payment state where the merchant lacks a definitive authorization or processing result, often because of a timeout, missing response, or interrupted processing path.",
+    aliases: ["unknown outcomes", "outcome unknown"],
+  },
+  {
     term: "Decline",
     slug: "decline",
     category: "Failure and optimization",
     definition:
-      "An unsuccessful authorization or payment-flow outcome. The term should not collapse issuer decisions, merchant rules, provider failures, and technical interruptions into one undifferentiated category.",
+      "An unsuccessful authorization or payment-flow outcome caused by a negative decision or refusal. The term should not collapse issuer decisions, merchant rules, provider failures, errors, and unknown outcomes into one undifferentiated category.",
     aliases: ["declined", "declines"],
   },
   {
@@ -365,5 +453,6 @@ export const glossaryCategories = [
   "Payment lifecycle",
   "Payment metrics",
   "Payment actors",
+  "Response interpretation",
   "Failure and optimization",
 ];

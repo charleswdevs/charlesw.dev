@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">Many upstream responses can map to one normalized decline reason</title>
+  <desc id="desc">Several upstream response values converge into one gateway category, making reverse diagnosis unreliable.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .box { fill: #fffdf8; stroke: #ded8cc; stroke-width: 3; }
+      .target { fill: #2d3130; }
+      .label { fill: #20231f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 30px; font-weight: 760; }
+      .small { fill: #62665f; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 21px; }
+      .code { fill: #20231f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 30px; font-weight: 760; }
+      .targetText { fill: #fffaf0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 34px; font-weight: 800; }
+      .arrow { stroke: #b98a36; stroke-width: 7; fill: none; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#b98a36" />
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="920" />
+  <text class="label" x="80" y="88" font-size="42">Forward translation can be deterministic</text>
+  <text class="small" x="80" y="128">Reverse diagnosis is unreliable once several source values have been collapsed.</text>
+
+  <g transform="translate(100 205)">
+    <rect class="box" width="460" height="100" rx="8" />
+    <text class="code" x="34" y="62">05: Do Not Honor</text>
+  </g>
+  <g transform="translate(100 345)">
+    <rect class="box" width="460" height="100" rx="8" />
+    <text class="code" x="34" y="62">N7: CVV mismatch</text>
+  </g>
+  <g transform="translate(100 485)">
+    <rect class="box" width="460" height="100" rx="8" />
+    <text class="code" x="34" y="62">R1: issuer risk rule</text>
+  </g>
+  <g transform="translate(100 625)">
+    <rect class="box" width="460" height="100" rx="8" />
+    <text class="code" x="34" y="62">host: generic decline</text>
+  </g>
+
+  <path class="arrow" d="M585 255 C720 255 765 420 895 455" marker-end="url(#arrowhead)" />
+  <path class="arrow" d="M585 395 C720 395 765 440 895 465" marker-end="url(#arrowhead)" />
+  <path class="arrow" d="M585 535 C720 535 765 500 895 485" marker-end="url(#arrowhead)" />
+  <path class="arrow" d="M585 675 C720 675 765 520 895 500" marker-end="url(#arrowhead)" />
+
+  <g transform="translate(915 350)">
+    <rect class="target" width="520" height="250" rx="10" />
+    <text class="small" x="50" y="68" fill="#fffaf0">Gateway normalized reason</text>
+    <text class="targetText" x="50" y="137">do_not_honor</text>
+    <text class="small" x="50" y="190" fill="#fffaf0">Useful category.</text>
+    <text class="small" x="50" y="224" fill="#fffaf0">Not a unique source message.</text>
+  </g>
+</svg>
