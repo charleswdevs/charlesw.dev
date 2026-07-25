@@ -1,7 +1,7 @@
 ---
 title: "A Decline Code Is Not a Diagnosis"
 description: "How payment responses lose meaning across gateways, processors, networks, and merchant systems."
-pubDate: 2026-07-11
+pubDate: 2026-07-25
 images:
   - /blog-assets/a-decline-code-is-not-a-diagnosis/social-card.png
   - /blog-assets/a-decline-code-is-not-a-diagnosis/response-translation-pipeline.png
