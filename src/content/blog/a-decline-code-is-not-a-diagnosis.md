@@ -302,18 +302,60 @@ Those fields should be preserved separately.
 
 ### Checkout.com
 
-Checkout.com uses its own API status and response-code model.
+Checkout.com exposes a five-digit `response_code` as the primary payment response in its Unified Payments API and payment webhooks. Additional context is provided through fields such as `response_summary` and `status`.
 
-Its documentation separates:
+Its codes are divided into broad categories:
 
-- HTTP status codes
-- API error codes
-- Payment response codes
-- Network-specific response-code references
+```text
+10xxx = approved
+20xxx = soft decline
+30xxx = hard decline
+40xxx = risk response
+```
 
-A merchant may receive a payment outcome and a Checkout.com response code rather than a raw two-digit issuer code.
+Within many `20xxx` payment responses, the final two digits preserve the corresponding two-digit processor or network response.
 
-Where more detailed network or processing information is available, it should not be overwritten by the top-level payment result.
+For insufficient funds, the merchant receives:
+
+```json
+{
+  "response_code": "20051",
+  "response_summary": "Insufficient funds"
+}
+```
+
+The relationship is visible:
+
+```text
+51 -> 20051
+```
+
+That makes Checkout.com’s translation easier to inspect than a gateway vocabulary that replaces the source value entirely.
+
+The prefix still adds Checkout.com’s interpretation.
+
+`20051` does not merely represent response `51`. It also places the transaction inside Checkout.com’s soft-decline category.
+
+Several nearby responses illustrate why merchants should preserve the complete code rather than collapsing them all into an `insufficient_funds` bucket:
+
+| Checkout.com code | Underlying code | Response |
+|---|---:|---|
+| `20005` | `05` | Do not honour |
+| `20051` | `51` | Insufficient funds |
+| `20061` | `61` | Exceeds withdrawal amount limit |
+| `20065` | `65` | Exceeds withdrawal frequency limit |
+
+All four may be treated operationally as soft declines, but they do not describe the same condition.
+
+`20051` indicates a balance or credit availability problem.
+
+`20061` indicates an amount ceiling.
+
+`20065` indicates a frequency or velocity ceiling.
+
+`20005` is the generic case. It may conceal several issuer-side reasons, including conditions that another issuer or processor might have represented more specifically.
+
+Collapsing these responses into one recovery category may simplify downstream logic, but it removes distinctions present in the gateway response itself.
 
 ### Braintree
 
@@ -1064,5 +1106,6 @@ It is not, by itself, a diagnosis of why the payment failed.
 - Stripe, [*Decline codes*](https://docs.stripe.com/declines/codes), for Stripe-defined decline codes, advice codes, and the relationship to issuer decline codes.
 - Adyen, [*Refusal reasons*](https://docs.adyen.com/development-resources/refusal-reasons/), for `resultCode`, `refusalReason`, and standardized refusal reason behavior.
 - Braintree, [*Authorization response codes*](https://developer.paypal.com/braintree/docs/reference/general/processor-responses/authorization-responses/), for processor response classes, decline types, and examples such as `2000: Do Not Honor`.
-- Checkout.com, [*API Reference*](https://api-reference.checkout.com/), for the separation of API response behavior and payment API resources.
+- Checkout.com, [*Response codes*](https://checkoutdocs.readme.io/docs/response-codes), for response-code categories, `response_summary`, and examples such as `20051`, `20061`, and `20065`.
+- Checkout.com, [*Event types*](https://checkoutdocs.readme.io/docs/event-types), for payment webhook event names including `payment_declined`.
 - Charles Weiss, [*Authorization Is Not Approval*](/blog/authorization-is-not-approval/), for the surrounding payment lifecycle and metric-denominator model.
